@@ -41,7 +41,7 @@ public class ClassSchool {
 			},
 			fetch = FetchType.EAGER
 			)
-	@JoinColumn(name = "cycle_id_cycle")
+	@JoinColumn(name = "cycle_id")
 	private Cycle cycle;
 	
 	@JsonBackReference

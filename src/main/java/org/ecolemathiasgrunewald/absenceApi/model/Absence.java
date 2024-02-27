@@ -42,6 +42,9 @@ public class Absence {
 	@Column(name = "end_time", columnDefinition = "TIME")
 	private LocalTime endTime;
 	
+	@Column(name = "declaration_date", columnDefinition = "DATETIME")
+	private LocalTime declarationDate;
+	
 	private String description;
 	
 	@Column(name = "canteen",nullable = false, columnDefinition = "TINYINT(1)")
@@ -58,7 +61,15 @@ public class Absence {
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER
 			)
-	@JoinColumn(name = "child_id_child")
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@JsonManagedReference
+	@ManyToOne(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER
+			)
+	@JoinColumn(name = "child_id")
 	private Child child;
 
 	public int getAbsenceId() {

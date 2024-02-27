@@ -57,7 +57,7 @@ public class Child {
 			},
 			fetch = FetchType.EAGER
 			)
-	@JoinColumn(name = "class_id_class")
+	@JoinColumn(name = "class_id")
 	private ClassSchool classSchool;
 	
 	@JsonManagedReference
@@ -68,7 +68,7 @@ public class Child {
 							CascadeType.MERGE,
 						}
 			)
-	private List<Parent> parents = new ArrayList<>();
+	private List<User> users = new ArrayList<>();
 
 
 

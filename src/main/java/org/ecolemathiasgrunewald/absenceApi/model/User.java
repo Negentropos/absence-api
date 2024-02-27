@@ -54,7 +54,7 @@ public class User {
 			},
 			fetch = FetchType.EAGER
 			)
-	@JoinColumn(name = "role_id_role")
+	@JoinColumn(name = "role_id")
 	private Role role;
 	
 	@JsonManagedReference
@@ -66,11 +66,25 @@ public class User {
 			})
 	@JoinTable(
 			name = "user_cycle",
-			joinColumns = @JoinColumn(name = "user_id_user"),
-			inverseJoinColumns = @JoinColumn(name = "cycle_user_cycle")
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "cycle_id")
+			)
+	private List<Cycle> cycles = new ArrayList<>();
+	
+	@JsonBackReference
+	@ManyToMany(
+			fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			})
+	@JoinTable(
+			name = "child_parent",
+			joinColumns = @JoinColumn(name = "parent_id"),
+			inverseJoinColumns = @JoinColumn(name = "child_id")
 			)
 	
-	private List<Cycle> cycles = new ArrayList<>();
+	private List<Child> childs = new ArrayList<>();
 
 
 	public int getUserId() {
